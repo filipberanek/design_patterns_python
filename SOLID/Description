@@ -1,0 +1,15 @@
+S - SRP - Single responsibility principle
+    SOC - Separation of concerns
+    Each class and method has its only one function
+
+O - Open close principle
+    Construct classes in order not to have one god class and modify it
+    Class should be build in the way of:
+        open for extension, closed for modification
+
+L - Be able to substitute base type for subtype
+
+I - You shouldnt bee putting to much in interface
+    Dont force implementer to implement not needed method YAGNI
+
+D - High level should not depened upon low-level ones
