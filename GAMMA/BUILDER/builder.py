@@ -17,6 +17,7 @@ Its better to have builder handling all of these things for us,
 
 
 class HtmlElement:
+    # Helper
     indent_size = 2
 
     def __init__(self, name="", text=""):
@@ -40,9 +41,34 @@ class HtmlElement:
         return '\n'.join(lines)
 
     def __str__(self):
-        return  self.__str(0)
+        return self.__str(0)
+
 
 class HtmlBuilder:
+    # Builder
     def __init__(self, root_name):
         self.root_name = root_name
-        self.__root = HtmlElement(name = root_name)
+        self.__root = HtmlElement(name=root_name)
+
+    def add_child(self, child_name, child_text):
+        self.__root.elements.append(
+            HtmlElement(child_name, child_text)
+        )
+
+    # fluent interace
+    def add_child_fluent(self, child_name, child_text):
+        self.__root.elements.append(
+            HtmlElement(child_name, child_text)
+        )
+        return self
+
+    def __str__(self):
+        return str(self.__root)
+
+
+builder = HtmlBuilder("ul")
+#builder.add_child("li", "hello")
+#builder.add_child("li", "world")
+builder.add_child_fluent("li", "hello").add_child_fluent("li", "world")
+print("Ordinary builder")
+print(builder)
